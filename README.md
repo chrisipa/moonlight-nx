@@ -24,12 +24,10 @@ Moonlight-NX is a port of [Moonlight Game Streaming Project](https://github.com/
 11. Minus+Plus - Guide button;
 
 # Build Moonlight-NX
-1. Build a development environment: `docker build . -t moonlight-nx-build`
-2. Run run the development environment: `docker run -it moonlight-nx-build`
-3. Clone this repo: `git clone --recursive https://github.com/rock88/moonlight-nx.git`;
-4. Set environment variables for the custom libcurl build: `export LIBCURL_PKGBUILD_URL="https://github.com/devkitPro/pacman-packages/raw/1582ad85914b14497fae32a9fe9074c0374f99f7/switch/curl/PKGBUILD"; export LIBCURL_BUILD_USER="build"`
-5. Run the build: `cd moonlight-nx; ./build.sh; exit`.
-6. Copy the .nro out of the container: `docker cp moonlight-nx-build:moonlight-nx/moonlight.nro .`
+1. Clone this repo and its submodules: `git clone --recursive https://github.com/rock88/moonlight-nx.git`
+2. Change directory to cloned repo: `cd moonlight-nx`
+3. Build a Docker image for the dev environment: `docker build . -t moonlight-nx-build`
+4. Run the build script in the Docker container for the dev environment and copy nro to Nintendo Switch using nxlink: `docker run -it --rm -e SWITCH_HOST=192.168.0.1 -v $(pwd):/moonlight-nx moonlight-nx-build`
 
 # Assets
 Icon - [moonlight-stream](https://github.com/moonlight-stream "moonlight-stream") project logo.
